@@ -1,0 +1,6 @@
+flask
+sqlalchemy
+pycrypto
+cryptography
+requests
+gevent
