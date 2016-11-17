@@ -75,7 +75,7 @@ Contributions to RouteWatch are definitely welcome, if you'd like to get involve
 
 
 ## Feature requests and bug reports
-Yeah... if it's a scurity issue it'll get fixed, if it's not a security issue then don't hold your breath.
+Yeah... if it's a security issue it'll get fixed, if it's not a security issue then don't hold your breath.
 
 
 ## License and copyright
