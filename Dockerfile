@@ -1,7 +1,8 @@
-FROM python:2.7
-MAINTAINER Shekhar Gulati "shekhargulati84@gmail.com"
-COPY . /app
-WORKDIR /app
+FROM python:3.5
+MAINTAINER Tim Armstrong
+COPY . /RouteWatch
+WORKDIR /RouteWatch
+EXPOSE 80
 RUN pip install -r requirements.txt
 ENTRYPOINT ["python"]
-CMD ["app.py"]
+CMD ["runserver.py"]

@@ -12,11 +12,11 @@ RouteWatch is expected to be used inside a docker container (Dockerfile supplied
 
 To build the docker image:
 	
-	docker build -t RouteWatch .
+	docker build -t routewatch .
 
 To run the docker image:
 
-	docker run --name=RouteWatch --restart=always -p 80:80 -d RouteWatch
+	docker run --name=routewatch --restart=always -p 80:80 -d RouteWatch
 
 
 ## Running Native
