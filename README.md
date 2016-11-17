@@ -33,38 +33,41 @@ It is required that you configure all the settings correctly before adding eithe
 
 ### E-mail
 Before all else it is recommended to configure the e-mail settings.
-        <name>              <data>                  <encrypt flag>
-        email_address       <sender_address>        True
-        email_password      <smtp_password>         True
-        email_user          <smtp_user>             True
-        email_server        <smtp_server>           True
+
+        [name]              [data]                  [encrypt flag]
+        email_address       sender_address        	True
+        email_password      smtp_password         	True
+        email_user          smtp_user             	True
+        email_server        smtp_server           	True
 
 ### LookingGlass
 After E-mail it's best to configure the LookingGlass settings.
 Currently only YABGP is supported, there are no plans to support others.
-        <name>              <data>                  <encrypt flag>
-        lg_url              <YABGP_API_URL>         False
-        lg_user             <YABGP_user>            True
-        lg_password         <YABGP_password>        True
-        monitored_router    <peer_to_be_monitored>  False
+
+        [name]              [data]                  [encrypt flag]
+        lg_url              YABGP_API_URL         	False
+        lg_user             YABGP_user            	True
+        lg_password         YABGP_password        	True
+        monitored_router    peer_to_be_monitored  	False
         
 
 ## Prefixes
 Prefixes are stored in CIDR format with an explicit IP protocol number (yes we could auto detect the protocol, but this would complicate the code).
 At the time of writing only IPv4 support is being released. IPv6 is expected to be implemented in Q1 2017.
-        <prefix>                    <protocol>
-        <some_prefix_in_cidr>       4
+
+        [prefix]			[protocol]
+        some_prefix_in_cidr		4
 
 
 ## Recipients
 Every recipient in the recipients list will be sent an e-mail when a monitored prefix changes state.
 The states that trigger e-mails are:
 
-    - Not Found / Lost
-    - Found / Recovered
-    - Cancelled (a special state triggered when a Not Found / Lost prefix is removed from the prefix list)
+ - Not Found / Lost
+ - Found / Recovered
+ - Cancelled (a special state triggered when a Not Found / Lost prefix is removed from the prefix list)
 
-The initial state is <Found>, meaning that adding a prefix to the monitor list that is not visible to the LookingGlass will trigger an e-mail.
+The initial state is *Found*, meaning that adding a prefix to the monitor list that is not visible to the LookingGlass will trigger an e-mail.
 
 
 ## Contributions
