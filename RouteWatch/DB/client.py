@@ -8,7 +8,9 @@ DBSession = sessionmaker(bind=engine)
 session = DBSession()
 
 class DB(object):
-
+    """
+    A lazy wrapper for sqlalchemy that gives it a somewhat REST like interface.
+    """
     tables = dict(Prefix=Prefix, Recipient=Recipient, Settings=Settings)
 
     def create(self, table, **kwargs):
