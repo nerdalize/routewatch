@@ -16,7 +16,7 @@ To build the docker image:
 
 To run the docker image:
 
-	docker run --name=routewatch --restart=always -p 80:80 -d RouteWatch
+	docker run --name=RouteWatch --restart=always -p 80:80 -d routewatch
 
 
 ## Running Native
