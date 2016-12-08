@@ -1,13 +1,14 @@
-from RouteWatch.DB.client import DB as database
-from RouteWatch.UI import app
-from RouteWatch.Security.crypto import get_secret, encrypt
+from routewatch.DB.client import DB as database
+from routewatch.UI import app
+from routewatch.Security.crypto import get_secret, encrypt
+
 DB = database()
 
 from flask import request, redirect
 
+
 @app.route('/')
 def index():
-    code = 200
     data = """
         <a href="/prefixes">Prefixes</a><br><a href="/prefixes/add">Add Prefix</a><br>
         <a href="/recipients">Recipients</a><br><a href="/recipients/add">Add Recipient</a><br>
@@ -18,7 +19,9 @@ def index():
 
 @app.route('/prefixes')
 def prefixes():
-    prefix_list = ['<form action="/prefixes/delete/{}" method="POST">{} <button>X</button></form>'.format(prefix.id, prefix.prefix) for prefix in DB.get("Prefix")]
+    prefix_list = [
+        '<form action="/prefixes/delete/{}" method="POST">{} <button>X</button></form>'.format(prefix.id, prefix.prefix)
+        for prefix in DB.get("Prefix")]
     data = """
         <a href="/">Menu</a>
         <ul>
@@ -27,7 +30,6 @@ def prefixes():
         <br>
         <a href="/prefixes/add">Add Prefix</a>
     """.format(prefixes="<br>".join(prefix_list))
-    code = 200
     return data
 
 
@@ -46,23 +48,24 @@ def add_prefix():
             <button>Add</button>
         </form>
     """
-    code = 200
     return data
 
 
 @app.route('/prefixes/delete/<id>', methods=["POST"])
-def delete_prefix(id):
+def delete_prefix(ident):
     if request.method == 'POST':
-        DB.delete("Prefix", id=id)
+        DB.delete("Prefix", id=ident)
         DB.commit()
         data = redirect("/prefixes")
-        code = 200
         return data
 
 
 @app.route('/recipients')
 def recipients():
-    recipient_list = ['<form action="/recipients/delete/{}" method="POST">{} <button>X</button></form>'.format(recipient.id, recipient.email) for recipient in DB.get("Recipient")]
+    recipient_list = [
+        '<form action="/recipients/delete/{}" method="POST">{} <button>X</button></form>'.format(recipient.id,
+                                                                                                 recipient.email) for
+        recipient in DB.get("Recipient")]
     data = """
         <a href="/">Menu</a>
         <ul>
@@ -71,7 +74,6 @@ def recipients():
         <br>
         <a href="/recipients/add">Add Recipient</a>
     """.format(recipients="<br>".join(recipient_list))
-    code = 200
     return data
 
 
@@ -89,23 +91,23 @@ def add_recipient():
             <button>Add</button>
         </form>
     """
-    code = 200
     return data
 
 
 @app.route('/recipients/delete/<id>', methods=["POST"])
-def delete_recipient(id):
+def delete_recipient(ident):
     if request.method == 'POST':
-        DB.delete("Recipient", id=id)
+        DB.delete("Recipient", id=ident)
         DB.commit()
         data = redirect("/recipients")
-        code = 200
         return data
 
 
 @app.route('/settings')
 def settings():
-    settings_list = ['<form action="/settings/delete/{}" method="POST">{} <button>X</button></form>'.format(setting.id, setting.name) for setting in DB.get("Settings")]
+    settings_list = [
+        '<form action="/settings/delete/{}" method="POST">{} <button>X</button></form>'.format(setting.id, setting.name)
+        for setting in DB.get("Settings")]
     data = """
         <a href="/">Menu</a>
         <ul>
@@ -114,7 +116,6 @@ def settings():
         <br>
         <a href="/settings/add">Add Settings</a>
     """.format(recipients="<br>".join(settings_list))
-    code = 200
     return data
 
 
@@ -126,7 +127,7 @@ def add_setting():
         if encryption_requested:
             data = encrypt(request.form["data"].encode(), get_secret()).decode()
         else:
-            data=request.form["data"]
+            data = request.form["data"]
         DB.create("Settings", name=request.form["name"], data=data)
         DB.commit()
         data = redirect("/settings")
@@ -140,15 +141,13 @@ def add_setting():
             <button>Add</button>
         </form>
     """
-    code = 200
     return data
 
 
 @app.route('/settings/delete/<id>', methods=["POST"])
-def delete_setting(id):
+def delete_setting(ident):
     if request.method == 'POST':
-        DB.delete("Settings", id=id)
+        DB.delete("Settings", id=ident)
         DB.commit()
         data = redirect("/settings")
-        code = 200
         return data

@@ -2,9 +2,8 @@ import smtplib
 from email.mime.text import MIMEText
 from email.utils import COMMASPACE
 
-from RouteWatch.DB.client import DB as database
-from RouteWatch.Security.crypto import decrypt
-
+from routewatch.DB.client import DB as database
+from routewatch.Security.crypto import decrypt
 
 DB = database()
 

@@ -1,11 +1,12 @@
 from sqlalchemy.orm import sessionmaker
 
-from RouteWatch.DB.declarative import *
+from routewatch.DB.declarative import *
 
 engine = create_engine('sqlite:///core.db')
 Base.metadata.bind = engine
 DBSession = sessionmaker(bind=engine)
 session = DBSession()
+
 
 class DB(object):
     """

@@ -1,14 +1,12 @@
 import requests
 
-from RouteWatch.DB.client import DB as database
-from RouteWatch.Security.crypto import decrypt
-
+from routewatch.DB.client import DB as database
+from routewatch.Security.crypto import decrypt
 
 DB = database()
 
 
 class Protocol(object):
-
     def __init__(self, LG, proto):
         """
         A Protocol baseclass for wrapping the YABGP API
@@ -74,14 +72,14 @@ class Protocol(object):
         good = list()
         for prefix in routes.keys():
             if prefix not in lg_response.keys():
-                missing.append({"Prefix":prefix, "ASPath": -1, "Valid": False})
+                missing.append({"Prefix": prefix, "ASPath": -1, "Valid": False})
             else:
                 good.append(dict(Prefix=prefix, ASPath=lg_response[prefix]["2"][0][1],
                                  Match=(routes[prefix] == lg_response[prefix]["2"][0][1])))
         return {"NotFound": missing, "Found": good}
 
-class LookingGlass(object):
 
+class LookingGlass(object):
     def __init__(self, secret=None):
         """
          A simple container for the to hold the LookingGlass credentials and instances.

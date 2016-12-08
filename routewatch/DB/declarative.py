@@ -4,6 +4,7 @@ from sqlalchemy.ext.declarative import declarative_base
 
 Base = declarative_base()
 
+
 class Prefix(Base):
     __tablename__ = 'prefix'
     # Here we define columns for the table person
@@ -12,12 +13,14 @@ class Prefix(Base):
     prefix = Column(String(1024), nullable=False)
     protocol = Column(Integer, nullable=False)
 
+
 class Recipient(Base):
     __tablename__ = 'recipient'
     # Here we define columns for the table person
     # Notice that each column is also a normal Python instance attribute.
     id = Column(Integer, primary_key=True)
     email = Column(String(1024), nullable=False)
+
 
 class Settings(Base):
     __tablename__ = 'settings'

@@ -2,8 +2,8 @@
 
 from multiprocessing import Process
 
-from RouteWatch.UI import app
-from RouteWatch.Security.crypto import get_secret
+from routewatch.UI import app
+from routewatch.Security.crypto import get_secret
 
 
 def check_state(secret=None):
@@ -18,10 +18,10 @@ def check_state(secret=None):
     from time import sleep
     import logging
 
-    from RouteWatch.Agents.email import email
-    from RouteWatch.Agents.yabgp_api import LookingGlass
+    from routewatch.Agents.email import email
+    from routewatch.Agents.yabgp_api import LookingGlass
 
-    from RouteWatch.DB.client import DB as database
+    from routewatch.DB.client import DB as database
     LG = LookingGlass(secret)
     DB = database()
     state = dict()
@@ -48,7 +48,7 @@ def check_state(secret=None):
                 email(changed, [recipient.email for recipient in DB.get("Recipient")], secret)
             sleep(5)
         except:
-            logging.exception("An unexpected exception occured")
+            logging.exception("An unexpected exception occurred")
 
 
 if __name__ == "__main__":

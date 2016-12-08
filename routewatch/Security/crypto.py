@@ -22,7 +22,7 @@ def get_secret():
     """
     with open("master.key", "ba+") as f:
         # Checks the size of the secret and loads it if it's valid
-        if os.path.getsize("master.key") != 32: # If it's not the correct length it generates a new one and stores it.
+        if os.path.getsize("master.key") != 32:  # If it's not the correct length it generates a new one and stores it.
             f.seek(0)
             r = Random.new()
             secret = r.read(32)
@@ -47,12 +47,12 @@ def encrypt(data, secret):
     r = Random.new()
     salt = r.read(16)
     # Generates a suitable key from the secret by HMACing it with the salt
-    kdf = PBKDF2HMAC(algorithm=hashes.SHA256(), length=32, salt=salt, iterations=100000,backend=default_backend())
+    kdf = PBKDF2HMAC(algorithm=hashes.SHA256(), length=32, salt=salt, iterations=100000, backend=default_backend())
     key = urlsafe_b64encode(kdf.derive(secret))
     # Encrypts the data
     f = Fernet(key)
     ciphertext = f.encrypt(data)
-    return b64encode(salt+ciphertext)
+    return b64encode(salt + ciphertext)
 
 
 def decrypt(encodedciphertext, secret):
@@ -69,7 +69,7 @@ def decrypt(encodedciphertext, secret):
     salt = ciphertext[:16]
     ciphertext = ciphertext[16:]
     # Regenerates the key by HMACing the secret with the salt
-    kdf = PBKDF2HMAC(algorithm=hashes.SHA256(), length=32, salt=salt, iterations=100000,backend=default_backend())
+    kdf = PBKDF2HMAC(algorithm=hashes.SHA256(), length=32, salt=salt, iterations=100000, backend=default_backend())
     key = urlsafe_b64encode(kdf.derive(secret))
     # Decrypts the data
     f = Fernet(key)

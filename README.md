@@ -1,13 +1,29 @@
-# RouteWatch
-RouteWatch brings automated alerting to YABGP.
+# routewatch
+Routewatch brings automated alerting to YABGP.
+Network operators frequently hear about routing issues from their customers before they become aware of it themselves. After all the internet is a complicated constantly changing spaghetti-like graph of loosely associated nodes (networks).
+While BGP does a lot to abstract away all the complexity and inconsistencies occasionally routes go missing and suddenly you can't access a website.
+A lot of the time the instabilities are due to human error such as accidental announcements of internal aggregations to upstream providers (most Tier-1 and Tier-2 networks prefer customer routes to peer routes).
+But as with most things, awareness of a problem is the first step towards a solution, and the sooner you are aware the sooner you can fix it.
 
-It watches a designated YABGP instance for prefix availability, if a prefix becomes unavailable Routewatch sends an e-mail to everyone in it's recipient list informing them of the failure. When the prefix becomes visible again it e-mails everyone once more to inform them that the issue has passed.
+Routewatch helps by monitoring the availability of CIDR prefixes in your YABGP LookingGlass, if for any reason you loose access to one or more of the prefixes you care about routewatch sends an e-mail to everyone in it's recipient list informing them of the failure. 
+When the affected prefixes become visible again it e-mails everyone once more to inform them that the issue has passed.
 
-Please pay close attention to the settings part of this readme.
+Routerwatch is considered production ready, although not yet feature rich or by any measure pretty, and is actively used at Nerdalize to monitor both our iBGP and our eBGP RIBs.
+
+Please pay close attention to the settings part of this readme as misconfiguration will erther result in either no e-mails or large numbers of false positives being sent.
+
+## Security
+
+While it's presently surplus to requirement as the database is a sqlite3 file stored in the same file as the service, and not to mention I've not added https support yet, it might be interesting to note that routewatch explicitly requires that certain settings are encryptedwhen stored in the DB.
+This is because the intention is to support external databases such as postgresql or mariaDB so that prefixes may be inserted automatically by your IPAM (IP Address Management) system, and storing security credentials in plain text on an untrusted location is stupid.
+
+### NOTICE:
+
+It is highly recommended that you use a YABGP instance that is set up as a LookingGlass only, that is to say that your primary BGP routers don't accept announcements or updates from it, because you will be storing the access credentials in routewatch and we don't guarantee the safety of these credentials, nor the routewatch system.
 
 
-## Docker
-RouteWatch is expected to be used inside a docker container (Dockerfile supplied), however this is not a strict requirement.
+## Running in Docker
+Routewatch is expected to be used inside a docker container (Dockerfile supplied), however this is not a strict requirement.
 
 
 To build the docker image:
@@ -16,11 +32,11 @@ To build the docker image:
 
 To run the docker image:
 
-	docker run --name=RouteWatch --restart=always -p 80:80 -d routewatch
+	docker run --name=routewatch --restart=always -p 80:80 -d routewatch
 
 
 ## Running Native
-RouteWatch doesn't currently have a stable daemonised running mode so it is recommended that production environments utilise the docker image.
+Routewatch doesn't currently have a stable daemonised running mode so it is recommended that production environments utilise the docker image.
 
 For development purposes users can simply start the program in a terminal emulator:
 	
@@ -28,8 +44,9 @@ For development purposes users can simply start the program in a terminal emulat
 
 
 ## Settings
-There are a number of settings that must be supplied before RouteWatch can run.
+There are a number of settings that must be supplied before routewatch can start monitoring routes. All settings are configured through the web interface that it exposes.
 It is required that you configure all the settings correctly before adding either recipients or prefixes, failure to do so may result in anomalous results.
+
 
 ### E-mail
 Before all else it is recommended to configure the e-mail settings.
@@ -71,7 +88,7 @@ The initial state is *Found*, meaning that adding a prefix to the monitor list t
 
 
 ## Contributions
-Contributions to RouteWatch are definitely welcome, if you'd like to get involved please get intouch through github.
+Contributions to routewatch are definitely welcome, if you'd like to get involved please get intouch through github.
 
 
 ## Feature requests and bug reports
