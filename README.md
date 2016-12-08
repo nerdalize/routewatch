@@ -1,8 +1,11 @@
 # routewatch
 Routewatch brings automated alerting to YABGP.
+
 Network operators frequently hear about routing issues from their customers before they become aware of it themselves. After all the internet is a complicated constantly changing spaghetti-like graph of loosely associated nodes (networks).
+
 While BGP does a lot to abstract away all the complexity and inconsistencies occasionally routes go missing and suddenly you can't access a website.
-A lot of the time the instabilities are due to human error such as accidental announcements of internal aggregations to upstream providers (most Tier-1 and Tier-2 networks prefer customer routes to peer routes).
+
+A lot of the time BGP instabilities are due to human error such as accidental announcements of internal aggregations to upstream providers (most Tier-1 and Tier-2 networks prefer customer routes to peer routes).
 But as with most things, awareness of a problem is the first step towards a solution, and the sooner you are aware the sooner you can fix it.
 
 Routewatch helps by monitoring the availability of CIDR prefixes in your YABGP LookingGlass, if for any reason you loose access to one or more of the prefixes you care about routewatch sends an e-mail to everyone in it's recipient list informing them of the failure. 
@@ -10,7 +13,8 @@ When the affected prefixes become visible again it e-mails everyone once more to
 
 Routerwatch is considered production ready, although not yet feature rich or by any measure pretty, and is actively used at Nerdalize to monitor both our iBGP and our eBGP RIBs.
 
-Please pay close attention to the settings part of this readme as misconfiguration will erther result in either no e-mails or large numbers of false positives being sent.
+
+*Please pay close attention to the settings part of this readme as misconfiguration will erther result in either no e-mails or large numbers of false positives being sent.*
 
 ## Security
 
