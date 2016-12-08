@@ -114,5 +114,5 @@ Yeah... if it's a security issue it'll get fixed, if it's not a security issue t
 
 ## License and copyright
 
-This software is licensed under the Apache License 2.0.
+This software is licensed under the MIT License.
 A copy should have been provided to you with the software.
