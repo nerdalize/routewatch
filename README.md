@@ -47,9 +47,9 @@ For development purposes users can simply start the program in a terminal emulat
 There are a number of settings that must be supplied before routewatch can start monitoring routes. All settings are configured through the web interface that it exposes.
 It is required that you configure all the settings correctly before adding either recipients or prefixes, failure to do so may result in anomalous results.
 
-	![settings screenshot](https://github.com/nerdalize/routewatch/raw/master/screenshots/settings.png "Settings list")
+![settings screenshot](https://github.com/nerdalize/routewatch/raw/master/screenshots/settings.png "Settings list")
 	
-	![add setting screenshot](https://github.com/nerdalize/routewatch/raw/master/screenshots/add_setting.png "Add setting form")
+![add setting screenshot](https://github.com/nerdalize/routewatch/raw/master/screenshots/add_setting.png "Add setting form")
 
 
 ### E-mail
@@ -77,9 +77,9 @@ Currently only YABGP is supported, there are no plans to support others.
 Prefixes are stored in CIDR format with an explicit IP protocol number (yes we could auto detect the protocol, but this would complicate the code).
 At the time of writing only IPv4 support is being released. IPv6 is expected to be implemented in Q1 2017.
 
-	![prefixes screenshot](https://github.com/nerdalize/routewatch/raw/master/screenshots/prefixes.png "Prefixes list")
+![prefixes screenshot](https://github.com/nerdalize/routewatch/raw/master/screenshots/prefixes.png "Prefixes list")
 	
-	![add prefix screenshot](https://github.com/nerdalize/routewatch/raw/master/screenshots/add_prefix.png "Add prefix form")
+![add prefix screenshot](https://github.com/nerdalize/routewatch/raw/master/screenshots/add_prefix.png "Add prefix form")
 
         [prefix]			[protocol]
         some_prefix_in_cidr		4
@@ -95,9 +95,9 @@ The states that trigger e-mails are:
 
 The initial state is *Found*, meaning that adding a prefix to the monitor list that is not visible to the LookingGlass will trigger an e-mail.
 
-	![recipients screenshot](https://github.com/nerdalize/routewatch/raw/master/screenshots/recipients.png "Recipients list")
+![recipients screenshot](https://github.com/nerdalize/routewatch/raw/master/screenshots/recipients.png "Recipients list")
 	
-	![add recipient screenshot](https://github.com/nerdalize/routewatch/raw/master/screenshots/add_recipient.png "Add recipient form")
+![add recipient screenshot](https://github.com/nerdalize/routewatch/raw/master/screenshots/add_recipient.png "Add recipient form")
 
 
 ## Contributions
