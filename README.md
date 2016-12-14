@@ -1,5 +1,5 @@
 # routewatch
-Routewatch brings automated alerting to YABGP.
+Routewatch brings automated alerting to [YABGP](https://github.com/smartbgp/yabgp).
 
 Network operators frequently hear about routing issues from their customers before they become aware of it themselves. After all the internet is a complicated constantly changing spaghetti-like graph of loosely associated nodes (networks).
 
